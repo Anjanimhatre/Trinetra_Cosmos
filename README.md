@@ -17,7 +17,7 @@ Built for the NASA Space Apps Challenge 2026.
 - **Mars page:** interactive 3D Mars showing landers, rovers, and mission events
 - **Explorer page:** users read mission information, then play quizzes across multiple levels and earn scores
 - **Space Historian:** AI chatbot with per-user saved chat history
-
+- **Moon Mission:** Experience the virtual Journey towards Moon
 ### Space Historian (RAG chatbot)
 - **Multi-agency sources:** indexes NASA, ISRO, and ESA web pages, PDFs, the NASA Image Library, and APOD
 - **Hybrid search:** pgvector semantic search combined with full-text keyword search on Neon, merged by rank fusion
@@ -90,12 +90,9 @@ npm run dev
 
 ### Environment variables
 ```
-DATABASE_URL=your_neon_connection_string
-GEMINI_API_KEY=your_gemini_api_key
-ADMIN_TOKEN=your_admin_token
+use .env.example available in both frontend and backend
 ```
 
-Adjust folder names, file names, and variables to match your repository.
 
 ---
 
