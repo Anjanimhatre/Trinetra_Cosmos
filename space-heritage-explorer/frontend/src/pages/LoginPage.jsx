@@ -1,55 +1,69 @@
-// TEST-ONLY fake login. No backend calls. Replace with the real LoginPage.jsx after testing.
 import { useState } from "react";
 import { ArrowRight, Lock, Mail } from "lucide-react";
 import { AuthLayout, Field } from "../components/AuthLayout.jsx";
 import GoogleButton from "../components/GoogleButton.jsx";
 import { auth } from "../services/auth.js";
 
-// Change these to match the roles your App expects.
-const ROLES = ["user", "admin"];
+const EMAIL_RE = /^\S+@\S+\.\S+$/;
 
 export default function LoginPage({ onAuth, onSwitch }) {
-  const [f, setF] = useState({ email: "test@example.com", password: "test1234", remember: false });
-  const [role, setRole] = useState(ROLES[0]);
+  const [f, setF] = useState({ email: "", password: "", remember: false });
+  const [touched, setTouched] = useState({});
+  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState(null); // { type: "error" | "info", text }
   const [busy, setBusy] = useState(false);
-  const [status, setStatus] = useState(null);
+
+  const errors = {
+    email: EMAIL_RE.test(f.email) ? "" : "Enter a valid email address.",
+    password: f.password ? "" : "Enter your password.",
+  };
+  const shown = (k) => (touched[k] || submitted ? errors[k] : "");
 
   const bind = (k) => ({
     value: f[k],
-    error: "",
+    error: shown(k),
     onChange: (e) => {
       const value = e.target.value;
       setF((s) => ({ ...s, [k]: value }));
+      setStatus(null);
     },
-    onBlur: () => {},
+    onBlur: () => setTouched((t) => ({ ...t, [k]: true })),
   });
 
-  // Builds a fake session and hands it to App, same shape as the real flow.
-  const fakeLogin = (email, remember) => {
-    setBusy(true);
-    setTimeout(() => {
-      const data = {
-        token: "fake-token-for-testing",
-        user: {
-          id: "fake-1",
-          name: (email || "Test User").split("@")[0],
-          email: email || "test@example.com",
-          role,
-        },
-      };
-      try {
-        auth.save(data, remember); // so a page refresh keeps you logged in
-      } catch {
-        /* ignore if auth.save differs; App state still gets the user below */
-      }
-      onAuth(data.user, remember);
-      setBusy(false);
-    }, 400);
+  // Saves the token, then hands the user (with role) to App.
+  const finish = (data, remember) => {
+    auth.save(data, remember);
+    onAuth(data.user, remember);
   };
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
-    fakeLogin(f.email, f.remember);
+    setSubmitted(true);
+    if (errors.email || errors.password) return;
+    setBusy(true);
+    setStatus(null);
+    try {
+      finish(await auth.login(f.email, f.password), f.remember);
+    } catch (er) {
+      setStatus({ type: "error", text: er.message });
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  const onGoogle = async (credential) => {
+    setBusy(true);
+    setStatus(null);
+    try {
+      finish(await auth.loginGoogle(credential), true);
+    } catch (er) {
+      setStatus({
+        type: "error",
+        text: er.status === 404 ? "No account found for this Google account. Register first." : er.message,
+      });
+    } finally {
+      setBusy(false);
+    }
   };
 
   return (
@@ -60,7 +74,7 @@ export default function LoginPage({ onAuth, onSwitch }) {
       lead="Discover the untold story of NASA’s discarded equipment on the Moon and Mars."
     >
       <h2>Login</h2>
-      <p className="pa-sub">Test mode: any credentials work.</p>
+      <p className="pa-sub">Continue your journey.</p>
 
       <form onSubmit={submit} noValidate>
         <Field id="login-email" label="Email address" icon={Mail} type="email"
@@ -77,12 +91,13 @@ export default function LoginPage({ onAuth, onSwitch }) {
             />
             Remember me
           </label>
-          <label>
-            Role:{" "}
-            <select value={role} onChange={(e) => setRole(e.target.value)}>
-              {ROLES.map((r) => <option key={r} value={r}>{r}</option>)}
-            </select>
-          </label>
+          <button
+            type="button"
+            className="pa-link"
+            onClick={() => setStatus({ type: "info", text: "Password reset is coming soon." })}
+          >
+            Forgot password?
+          </button>
         </div>
 
         <button className="pa-btn" disabled={busy}>
@@ -95,7 +110,7 @@ export default function LoginPage({ onAuth, onSwitch }) {
       <GoogleButton
         text="continue_with"
         disabled={busy}
-        onCredential={() => fakeLogin("google.user@example.com", true)}
+        onCredential={onGoogle}
         onError={(er) => setStatus({ type: "error", text: er.message })}
       />
 
@@ -110,3 +125,4 @@ export default function LoginPage({ onAuth, onSwitch }) {
     </AuthLayout>
   );
 }
+
