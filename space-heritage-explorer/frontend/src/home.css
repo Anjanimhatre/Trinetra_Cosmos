@@ -1,0 +1,54 @@
+html, body, #root { margin: 0; height: 100%; background: #05060a; }
+
+.shell { display: flex; flex-direction: column; height: 100vh; height: 100dvh; background: #05060a; color: #e9e6df; font-family: 'Hanken Grotesk', sans-serif; }
+.shell-main { position: relative; flex: 1; min-height: 0; overflow: auto; }
+
+/* navbar */
+.topnav { display: flex; align-items: center; gap: 16px; height: 60px; padding: 0 20px; box-sizing: border-box; background: #0b0d12; border-bottom: 1px solid #2a2d36; flex-shrink: 0; position: relative; z-index: 10; }
+.topnav button { background: transparent; color: #e9e6df; border: 0; border-radius: 6px; padding: 8px 14px; font: 600 14px 'Hanken Grotesk', sans-serif; cursor: pointer; }
+.topnav button:hover { background: #1b1e26; }
+.topnav button.active { background: #ffb36b; color: #1a1208; }
+.topnav .brand { font-size: 17px; padding-left: 0; }
+.topnav .brand:hover { background: transparent; }
+.topnav ul { display: flex; gap: 4px; list-style: none; margin: 0 auto 0 12px; padding: 0; }
+.topnav .user { display: flex; align-items: center; gap: 10px; color: #a9a69f; font-size: 14px; }
+.topnav .logout { background: #1b1e26; }
+
+/* home */
+.home { min-height: 100%; padding: 56px 24px; box-sizing: border-box; background: radial-gradient(ellipse at top, #141a2b 0%, #05060a 60%); }
+.hero { max-width: 760px; margin: 0 auto 48px; text-align: center; }
+.eyebrow { color: #ffb36b; font-size: 14px; letter-spacing: .08em; text-transform: uppercase; margin: 0 0 12px; }
+.hero h1 { font: 400 clamp(36px, 6vw, 64px)/1.05 'Instrument Serif', serif; margin: 0 0 16px; }
+.lead { color: #a9a69f; font-size: 17px; line-height: 1.6; margin: 0; }
+.worldcards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; max-width: 760px; margin: 0 auto; }
+.worldcard { background: #0f121a !important; border: 1px solid #2a2d36 !important; border-radius: 14px !important; padding: 28px 20px !important; text-align: center; color: #e9e6df !important; cursor: pointer; transition: transform .2s, border-color .2s; }
+.worldcard:hover { transform: translateY(-4px); border-color: #ffb36b !important; background: #0f121a !important; }
+.worldcard h2 { font: 400 32px 'Instrument Serif', serif; margin: 16px 0 6px; }
+.worldcard p { color: #a9a69f; font-size: 14px; margin: 0 0 14px; }
+.worldcard b { color: #ffb36b; font-size: 14px; }
+.orb { display: block; width: 120px; height: 120px; margin: 0 auto; border-radius: 50%; background-size: cover; box-shadow: inset -14px -10px 28px #000a, 0 0 40px #ffffff14; }
+.orb.moon { background: #b9b6b0 url('/moon.jpg') center/cover; }
+.orb.mars { background: #b5532f url('/mars.jpg') center/cover; }
+
+@media (max-width: 900px) {
+  .topnav { padding: 0 10px; gap: 6px; }
+  .topnav .brand { display: none; }
+  .topnav ul { margin-left: 0; }
+  .topnav .user span { display: none; }
+}
+
+
+
+
+/* Add to the end of src/home.css */
+.chatcta{display:flex;align-items:center;gap:16px;width:100%;max-width:760px;margin:20px auto 0;box-sizing:border-box;text-align:left;background:#0f121a !important;color:#e9e6df !important;border:1px solid #2a2d36 !important;border-radius:14px !important;padding:20px 22px !important;cursor:pointer;transition:border-color .2s,transform .2s}
+.chatcta:hover{border-color:#ffb36b !important;transform:translateY(-2px)}
+.chatcta-icon{font-size:32px}
+.chatcta-text{flex:1;display:flex;flex-direction:column;gap:4px}
+.chatcta-text strong{font:400 26px 'Instrument Serif',serif}
+.chatcta-text small{color:#a9a69f;font-size:14px;line-height:1.4}
+.chatcta b{color:#ffb36b;font-size:14px;white-space:nowrap}
+@media (max-width:600px){.chatcta{flex-wrap:wrap}.chatcta b{width:100%}}
+
+
+

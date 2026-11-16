@@ -1,0 +1,60 @@
+/* Colors use currentColor so the sidebar follows whatever theme your chat page already has. */
+.chat-layout {
+  display: grid;
+  grid-template-columns: 270px minmax(0, 1fr);
+  gap: 18px;
+  align-items: start;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.ch-side {
+  --ch-line: color-mix(in srgb, currentColor 22%, transparent);
+  display: grid;
+  gap: 10px;
+  align-content: start;
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+  padding: 12px;
+  border: 1px solid var(--ch-line);
+  border-radius: 12px;
+}
+
+.ch-new {
+  font: inherit; font-weight: 600; cursor: pointer; color: inherit;
+  padding: 10px 12px; border-radius: 10px; background: transparent;
+  border: 1px solid currentColor;
+}
+.ch-new:hover { background: color-mix(in srgb, currentColor 10%, transparent); }
+
+.ch-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.ch-list li {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 4px;
+  border-radius: 10px; border: 1px solid transparent;
+}
+.ch-list li.on { background: color-mix(in srgb, currentColor 12%, transparent); border-color: var(--ch-line); }
+.ch-list li:hover:not(.on) { background: color-mix(in srgb, currentColor 6%, transparent); }
+
+.ch-open {
+  display: grid; gap: 2px; text-align: left; font: inherit; color: inherit;
+  background: none; border: 0; padding: 9px 10px; cursor: pointer; min-width: 0;
+}
+.ch-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ch-date { font-size: .78rem; opacity: .65; }
+
+.ch-del {
+  font: inherit; font-size: .8rem; color: inherit; opacity: .6; cursor: pointer;
+  background: none; border: 0; padding: 6px 8px; border-radius: 8px;
+}
+.ch-del:hover { opacity: 1; text-decoration: underline; }
+
+.ch-empty, .ch-error { margin: 0; font-size: .88rem; opacity: .75; }
+.ch-error { opacity: 1; color: #f08a8a; }
+
+.ch-new:focus-visible, .ch-open:focus-visible, .ch-del:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+
+@media (max-width: 800px) {
+  .chat-layout { grid-template-columns: 1fr; }
+  .ch-side { max-height: 220px; }
+}

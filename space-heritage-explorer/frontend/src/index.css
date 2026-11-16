@@ -1,0 +1,50 @@
+:root { color-scheme: dark; }
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: radial-gradient(circle at top, #14163a, #070812 70%);
+  color: #e8eaf6;
+  min-height: 100vh;
+}
+.space-app { max-width: 1200px; margin: 0 auto; padding: 24px 16px 60px; }
+header { text-align: center; margin-bottom: 20px; }
+header h1 { margin: 0; font-size: 2rem; }
+header p { margin: 6px 0 0; color: #9aa0c7; }
+
+.tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 16px; }
+button {
+  background: #1d2050; color: #e8eaf6; border: 1px solid #343a8a;
+  padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 0.95rem;
+}
+button:hover:not(:disabled) { background: #2a2f78; }
+button:disabled { opacity: 0.4; cursor: not-allowed; }
+.tabs .active { background: #5b6cff; border-color: #5b6cff; }
+.logout{position:absolute;z-index:2;top:70px;right:28px;background:#1b1e26;color:#e9e6df}
+.search { display: flex; gap: 8px; max-width: 640px; margin: 0 auto 20px; }
+.search input {
+  flex: 1; padding: 10px 14px; border-radius: 8px; border: 1px solid #343a8a;
+  background: #0d0f2b; color: inherit; font-size: 1rem;
+}
+
+.status { text-align: center; color: #9aa0c7; }
+.status.error { color: #ff7b7b; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.card {
+  background: #0f1235; border: 1px solid #262b6b; border-radius: 12px;
+  overflow: hidden; display: flex; flex-direction: column;
+}
+.card img { width: 100%; height: 180px; object-fit: cover; }
+.card-body { padding: 14px; display: flex; flex-direction: column; gap: 6px; }
+.card h3 { margin: 0; font-size: 1.02rem; }
+.card small { color: #8a90c0; }
+.card p { margin: 0; font-size: 0.9rem; color: #c3c7e8; line-height: 1.45; }
+.clamp { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+.card a { color: #8fa0ff; font-size: 0.9rem; text-decoration: none; margin-top: 4px; }
+.card a:hover { text-decoration: underline; }
+.archive { grid-column: 1 / -1; }
+
+.pager { display: flex; justify-content: center; align-items: center; gap: 16px; margin-top: 24px; }
+
+

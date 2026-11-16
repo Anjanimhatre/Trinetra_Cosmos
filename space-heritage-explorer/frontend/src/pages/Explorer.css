@@ -1,0 +1,95 @@
+/* Space heritage missions. File: src/pages/Explorer.css */
+
+.sh-page {
+  --bg: #0a101f; --panel: #0e1730; --raised: #131d3a; --line: #25324f;
+  --ink: #f2f6ff; --muted: #9fb0cf; --accent: #ffa94d; --accent-ink: #1a0f00; --ok: #3ddc84; --bad: #ff7b7b;
+  box-sizing: border-box; max-width: 1080px; margin: 0 auto; padding: 32px 20px 64px;
+  color: var(--ink); font-family: "Poppins", "Segoe UI", system-ui, sans-serif;
+}
+.sh-page *, .sh-page *::before, .sh-page *::after { box-sizing: border-box; }
+.sh-page :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.sh-hero { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 20px; }
+.sh-hero h1 { margin: 0 0 10px; font-size: clamp(1.9rem, 4vw, 2.8rem); line-height: 1.1; }
+.sh-hero p { margin: 0; max-width: 52ch; color: var(--muted); line-height: 1.6; }
+
+.sh-score {
+  display: grid; grid-template-columns: auto auto 1fr; align-items: baseline; gap: 4px 8px; min-width: 220px; padding: 14px 18px;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+}
+.sh-score svg { color: var(--accent); align-self: center; }
+.sh-score strong { font-size: 1.7rem; line-height: 1; }
+.sh-score span { color: var(--muted); font-size: .85rem; }
+.sh-score .sh-bar { grid-column: 1 / -1; display: block; height: 6px; margin-top: 6px; background: var(--bg); border-radius: 3px; overflow: hidden; }
+.sh-bar span { display: block; height: 100%; background: var(--accent); }
+.sh-score small { grid-column: 1 / -1; color: var(--muted); font-size: .78rem; }
+
+.sh-apod {
+  display: flex; align-items: center; gap: 14px; margin-bottom: 20px; padding: 10px; color: var(--ink); text-decoration: none;
+  background: var(--panel); border: 1px solid var(--line); border-radius: 12px;
+}
+.sh-apod img { width: 72px; height: 72px; object-fit: cover; border-radius: 8px; }
+.sh-apod span { display: grid; gap: 2px; }
+.sh-apod em { color: var(--accent); font-size: .8rem; font-style: normal; font-weight: 600; }
+.sh-apod strong { font-weight: 500; }
+
+.sh-levels { display: flex; gap: 6px; margin-bottom: 22px; overflow-x: auto; padding-bottom: 4px; }
+.sh-levels button {
+  display: inline-flex; align-items: center; gap: 6px; padding: 9px 16px; color: var(--muted); font: inherit; font-size: .88rem; white-space: nowrap;
+  background: transparent; border: 1px solid var(--line); border-radius: 999px; cursor: pointer;
+}
+.sh-levels button:hover:not(:disabled) { color: var(--ink); }
+.sh-levels button:disabled { opacity: .45; cursor: not-allowed; }
+.sh-levels button.done { color: var(--ok); border-color: rgba(61, 220, 132, .45); }
+.sh-levels button.on { color: var(--accent-ink); background: var(--accent); border-color: var(--accent); font-weight: 600; }
+
+.sh-stage { padding: 24px; background: var(--panel); border: 1px solid var(--line); border-radius: 16px; }
+.sh-stage h2 { margin: 0 0 14px; font-size: 1.6rem; line-height: 1.2; }
+.sh-meta { margin: 0 0 6px; color: var(--accent); font-size: .82rem; font-weight: 600; }
+.sh-muted { color: var(--muted); font-size: .9rem; }
+.sh-err { color: #ff9a9a; font-size: .92rem; }
+
+.sh-items { display: grid; gap: 16px; margin: 16px 0 20px; }
+.sh-item { display: grid; grid-template-columns: 180px 1fr; gap: 18px; padding: 16px; background: var(--bg); border: 1px solid var(--line); border-radius: 12px; }
+.sh-item img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 8px; background: var(--raised); }
+.sh-item h3 { margin: 0 0 4px; font-size: 1.05rem; line-height: 1.3; }
+.sh-item p { margin: 6px 0 10px; color: #dbe4f7; line-height: 1.65; font-size: .93rem; }
+.sh-item a { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-size: .88rem; text-decoration: none; }
+.sh-item a:hover { text-decoration: underline; }
+
+.sh-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.sh-mark, .sh-ghost {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 42px; padding: 0 20px;
+  font: inherit; font-size: .92rem; font-weight: 600; border-radius: 10px; cursor: pointer;
+}
+.sh-mark { color: var(--accent-ink); background: var(--accent); border: 0; }
+.sh-mark:hover { filter: brightness(1.08); }
+.sh-ghost { color: var(--ink); background: transparent; border: 1px solid var(--line); }
+.sh-ghost:hover { background: rgba(255, 255, 255, .06); }
+
+.sh-quiz { display: grid; gap: 12px; max-width: 640px; }
+.sh-quiz-q { margin: 0; font-weight: 600; line-height: 1.5; }
+.sh-cloze { margin: 0; padding: 14px 16px; color: #dbe4f7; line-height: 1.65; background: var(--bg); border-left: 3px solid var(--accent); border-radius: 8px; }
+.sh-quiz-opts { display: grid; gap: 8px; }
+.sh-quiz-opts button {
+  padding: 12px 14px; text-align: left; color: var(--ink); font: inherit; font-size: .93rem;
+  background: var(--bg); border: 1px solid var(--line); border-radius: 10px; cursor: pointer;
+}
+.sh-quiz-opts button:hover:not(:disabled) { border-color: var(--accent); }
+.sh-quiz-opts button:disabled { cursor: default; }
+.sh-quiz-opts button.right { border-color: var(--ok); background: rgba(61, 220, 132, .12); }
+.sh-quiz-opts button.wrong { border-color: var(--bad); background: rgba(255, 123, 123, .12); }
+.sh-quiz-why { margin: 0; color: #dbe4f7; font-size: .9rem; line-height: 1.6; }
+.sh-quiz .sh-mark { justify-self: start; }
+
+.sh-result h3 { margin: 0 0 8px; font-size: 1.3rem; }
+.sh-result p { margin: 0 0 8px; color: #dbe4f7; line-height: 1.6; }
+.sh-done-msg { margin-top: 16px; color: var(--ok); font-weight: 600; }
+
+.sh-foot { margin: 28px 0 0; color: #7f90b3; font-size: .78rem; line-height: 1.6; }
+
+@media (max-width: 640px) {
+  .sh-item { grid-template-columns: 1fr; }
+  .sh-item img { aspect-ratio: 16 / 9; }
+  .sh-stage { padding: 18px; }
+}

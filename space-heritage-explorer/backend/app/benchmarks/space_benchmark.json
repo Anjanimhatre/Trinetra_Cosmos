@@ -1,0 +1,73 @@
+{
+  "items": [
+    {
+      "id": "apollo11-basic",
+      "type": "fact",
+      "question": "When did Apollo 11 land on the Moon and who was on the crew?",
+      "expected_organisations": ["NASA"],
+      "expected_sources_any": ["apollo"],
+      "reference_facts": [
+        "Apollo 11 landed on the Moon on July 20, 1969",
+        "The crew was Neil Armstrong, Buzz Aldrin and Michael Collins"
+      ]
+    },
+    {
+      "id": "chandrayaan3-basic",
+      "type": "fact",
+      "question": "What did Chandrayaan-3 achieve?",
+      "expected_organisations": ["ISRO"],
+      "expected_sources_any": ["chandrayaan"],
+      "reference_facts": [
+        "Chandrayaan-3 achieved a soft landing on the Moon in August 2023",
+        "The lander was named Vikram and the rover was named Pragyan"
+      ]
+    },
+    {
+      "id": "compare-c3-apollo11",
+      "type": "comparison",
+      "question": "Compare India's Chandrayaan-3 mission with NASA's Apollo 11 mission.",
+      "expected_organisations": ["NASA", "ISRO"],
+      "expected_sources_any": ["chandrayaan", "apollo"],
+      "reference_facts": [
+        "Apollo 11 was a crewed mission while Chandrayaan-3 was uncrewed",
+        "Apollo 11 landed in 1969 while Chandrayaan-3 landed in 2023"
+      ]
+    },
+    {
+      "id": "mars-orbiters",
+      "type": "comparison",
+      "question": "How do ISRO's Mars Orbiter Mission and ESA's Mars Express differ?",
+      "expected_organisations": ["ISRO", "ESA"],
+      "expected_sources_any": ["mangalyaan", "mars_express", "mars-express"],
+      "reference_facts": [
+        "ISRO's Mars Orbiter Mission was launched in November 2013",
+        "ESA's Mars Express was launched in 2003"
+      ]
+    },
+    {
+      "id": "perseverance-jezero",
+      "type": "fact",
+      "question": "Which crater is the Perseverance rover exploring and what is it looking for?",
+      "expected_organisations": ["NASA"],
+      "expected_sources_any": ["perseverance", "jezero"],
+      "reference_facts": [
+        "Perseverance is exploring Jezero Crater",
+        "It searches for signs of ancient microbial life"
+      ]
+    },
+    {
+      "id": "mars-water-over-time",
+      "type": "temporal",
+      "question": "How has our understanding of liquid water on Mars changed over time?",
+      "expected_organisations": ["NASA"],
+      "expected_sources_any": ["mars"],
+      "reference_facts": ["Evidence indicates Mars once had liquid water on its surface"]
+    },
+    {
+      "id": "unanswerable-ticket",
+      "type": "unanswerable",
+      "question": "What is the ticket price for a commercial NASA passenger flight to Mars in 2035?",
+      "must_refuse": true
+    }
+  ]
+}
