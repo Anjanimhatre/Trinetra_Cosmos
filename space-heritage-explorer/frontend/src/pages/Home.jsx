@@ -25,6 +25,15 @@ export default function Home({ onNavigate }) {
         </button>
       </section>
 
+      <button className="chatcta missioncta" onClick={() => onNavigate("mission")}>
+        <span className="chatcta-icon" aria-hidden="true">🚀</span>
+        <span className="chatcta-text">
+          <strong>Mission Lab</strong>
+          <small>Sit in the capsule, launch from Earth, fly to the Moon and walk at Tranquility Base.</small>
+        </span>
+        <b>Launch the mission →</b>
+      </button>
+
       <button className="chatcta" onClick={() => onNavigate("chat")}>
         <span className="chatcta-icon" aria-hidden="true">💬</span>
         <span className="chatcta-text">

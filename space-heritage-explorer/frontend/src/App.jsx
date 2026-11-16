@@ -9,6 +9,9 @@ import AdminHomePage from "./pages/AdminHomePage.jsx";
 import Navbar from "./components/Navbar.jsx";
 import { auth } from "./services/auth.js";
 import "./home.css";
+import MoonMission from "./pages/MoonMission.jsx";   // wherever you saved the file
+
+// where you render the current page:
 
 export default function App() {
   const [user, setUser] = useState(null);
@@ -78,6 +81,7 @@ export default function App() {
         {(page === "moon" || page === "mars") && <SpaceExplorer key={page} world={page} />}
         {page === "chat" && <ChatPage user={user} />}
         {page === "explorer" && <Explorer user={user} onLogout={onLogout} />}
+        {page === "mission" && <MoonMission />}
         {page === "admin" && isAdmin && <AdminHomePage user={user} onLogout={onLogout} />}
       </main>
     </div>
